@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Highway.Data;
+using ogsysCRM.Models;
+using ogsysCRM.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,9 +11,11 @@ namespace ogsysCRM.Controllers
 {
     public class HomeController : Controller
     {
+        CustomersService _customers = new CustomersService(DependencyResolver.Current.GetService<IRepository>());
         public ActionResult Index()
         {
-            return View();
+            IEnumerable<Customer> allCustomers = _customers.GetAllCustomers();
+            return View(allCustomers);
         }
 
         public ActionResult About()
