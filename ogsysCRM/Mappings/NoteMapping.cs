@@ -1,11 +1,11 @@
 using Highway.Data;
+using ogsysCRM.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 
-namespace ogsysCRM.Models
+namespace ogsysCRM.Mappings
 {
     public class NoteMapping : IMappingConfiguration
     {

@@ -1,11 +1,11 @@
-﻿using Highway.Data;
-using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using System;
 using System.Linq;
-using System.Web;
+using Highway.Data;
+using ogsysCRM.Models;
+using System.Data.Entity;
+using System.Collections.Generic;
 
-namespace ogsysCRM.Models
+namespace ogsysCRM.Mappings
 {
     public class CustomerMapping : IMappingConfiguration
     {
