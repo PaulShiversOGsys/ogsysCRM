@@ -54,6 +54,38 @@ namespace ogsysCRM.Tests
             Assert.That(foundCustomer.Count(), Is.EqualTo(1));
 
         }
+        [Test]
+        public void ShouldQueryAllCustomers()
+        {
+            //arrange
+            var customer1 = new Customer()
+            {
+                FirstName = "Justin",
+                LastName = "Patterson",
+                EmailAddress = "justinpatterson@gmail.com",
+                PhoneNumber = "8173076341",
+            };
+
+            var customer2 = new Customer()
+            {
+                FirstName = "Darth",
+                LastName = "Vader",
+                EmailAddress = "darthvader@gmail.com",
+                PhoneNumber = "1234567890",
+            };
+            var context = new InMemoryDataContext();
+            context.Add(customer1);
+            context.Add(customer2);
+
+            var service = new CustomersService(new Repository(context));
+
+            //act
+            var foundCustomer = service.GetAllCustomers();
+
+            //assert
+            Assert.That(foundCustomer, Is.Not.Null);
+            Assert.That(foundCustomer.Count(), Is.EqualTo(2));
+        }
 
         [Test]
         public void ShouldUpdateCustomer()

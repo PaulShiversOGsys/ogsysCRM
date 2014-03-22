@@ -183,6 +183,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\CustomerMapping.cs" />
+    <Compile Include="Models\CustomersService.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Models\NoteMapping.cs" />
