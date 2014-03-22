@@ -185,6 +185,7 @@
     <Compile Include="Models\CustomerMapping.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Note.cs" />
+    <Compile Include="Models\NoteMapping.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
