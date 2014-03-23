@@ -15,5 +15,7 @@ namespace ogsysCRM.Models
             : base("DefaultConnection")
         {
         }
+
+        public System.Data.Entity.DbSet<ogsysCRM.Models.Customer> Customers { get; set; }
     }
 }
