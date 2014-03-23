@@ -13,7 +13,7 @@ namespace ogsysCRM.Controllers
     [Authorize]
     public class CustomerController : Controller
     {
-        CustomersService _customers = new CustomersService(DependencyResolver.Current.GetService<IRepository>());
+        CustomersService _customers = DependencyResolver.Current.GetService<CustomersService>();
 
         // GET: /Customer/
         public ActionResult Index()
