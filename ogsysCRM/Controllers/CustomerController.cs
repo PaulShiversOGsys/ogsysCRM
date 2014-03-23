@@ -10,6 +10,7 @@ using System.Collections.Generic;
 
 namespace ogsysCRM.Controllers
 {
+    [Authorize]
     public class CustomerController : Controller
     {
         CustomersService _customers = new CustomersService(DependencyResolver.Current.GetService<IRepository>());
