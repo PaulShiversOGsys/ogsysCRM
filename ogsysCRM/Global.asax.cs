@@ -3,6 +3,8 @@ using Autofac.Integration.Mvc;
 using Highway.Data;
 using Highway.Data.EntityFramework;
 using ogsysCRM.Mappings;
+using ogsysCRM.Models;
+using ogsysCRM.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,13 +30,33 @@ namespace ogsysCRM
         {
             var builder = new ContainerBuilder();
 
-            builder.RegisterControllers(Assembly.GetExecutingAssembly());
-            builder.RegisterSource(new ViewRegistrationSource());
-            builder.RegisterType<CustomerMapping>().As<IMappingConfiguration>();
-            builder.RegisterType<Repository>().As<IRepository>();
             builder
-                .Register(c => new DataContext("DefaultConnection", c.Resolve<IMappingConfiguration>()))
+                .RegisterControllers(Assembly.GetExecutingAssembly());
+            
+            builder
+                .RegisterSource(new ViewRegistrationSource());
+            
+            builder
+                .RegisterType<CRMMapping>()
+                .As<IMappingConfiguration>();
+            
+            builder
+                .RegisterType<Repository>()
+                .As<IRepository>();
+            builder
+                .RegisterType<CRMContextConfiguration>()
+                .As<IContextConfiguration>();
+            
+            builder
+                .Register(c => new DataContext(
+                    "DefaultConnection", 
+                    c.Resolve<IMappingConfiguration>(),
+                    c.Resolve<IContextConfiguration>()))
                 .As<IDataContext>();
+            
+            builder
+                .RegisterType<CustomersService>()
+                .InstancePerLifetimeScope();
 
             var container = builder.Build();
 
