@@ -5,9 +5,9 @@ using System.Web;
 
 namespace ogsysCRM.Models
 {
-    public class Note
+    public class Note : Entity
     {
-        public int Id { get; set; }
-        public String NoteText { get; set; }
+        public String Body { get; set; }
+        public Customer Customer { get; set; }
     }
 }

@@ -16,6 +16,12 @@ namespace ogsysCRM.Mappings
         public NoteMap()
         {
             ToTable("Notes");
+            HasRequired(x => x.Customer)
+                .WithMany(x => x.Notes)
+                .WillCascadeOnDelete(true);
+            //HasRequired(x => x.User)
+            //    .WithMany(x => x.Notes)
+            //    .WillCascadeOnDelete(true);
         }
     }
 }

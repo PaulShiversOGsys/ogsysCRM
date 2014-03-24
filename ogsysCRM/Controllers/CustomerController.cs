@@ -13,7 +13,16 @@ namespace ogsysCRM.Controllers
     [Authorize]
     public class CustomerController : Controller
     {
-        CustomersService _customers = DependencyResolver.Current.GetService<CustomersService>();
+        CustomersService _customers;
+
+        /// <summary>
+        /// Initializes a new instance of the CustomerController class.
+        /// </summary>
+        /// <param name="customers"></param>
+        public CustomerController(CustomersService customers)
+        {
+            _customers = customers;
+        }
 
         // GET: /Customer/
         public ActionResult Index()
@@ -28,7 +37,7 @@ namespace ogsysCRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = _customers.GetCustomerById((int)id);
+            Customer customer = _customers.GetCustomerById(id.Value);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -65,7 +74,7 @@ namespace ogsysCRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = _customers.GetCustomerById((int)id);
+            Customer customer = _customers.GetCustomerById(id.Value);
             if (customer == null)
             {
                 return HttpNotFound();
@@ -95,7 +104,7 @@ namespace ogsysCRM.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Customer customer = _customers.GetCustomerById((int)id);
+            Customer customer = _customers.GetCustomerById(id.Value);
             if (customer == null)
             {
                 return HttpNotFound();

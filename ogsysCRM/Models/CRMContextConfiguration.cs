@@ -9,7 +9,9 @@ namespace ogsysCRM.Models
     {
         public void ConfigureContext(DbContext context)
         {
-            context.AttachEntity(new IdentityDbContext<ApplicationUser>());
+            context.Configuration.LazyLoadingEnabled = false;
+            context.Configuration.ProxyCreationEnabled = false;
+            context.Configuration.AttachEntity(new IdentityDbContext<ApplicationUser>());
         }
     }
 }

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Linq;
-using Highway.Data;
 using ogsysCRM.Models;
-using System.Data.Entity;
 using System.Collections.Generic;
-using Microsoft.AspNet.Identity.EntityFramework;
 using System.Data.Entity.ModelConfiguration;
 
 namespace ogsysCRM.Mappings
@@ -17,6 +14,9 @@ namespace ogsysCRM.Mappings
         public CustomerMap()
         {
             ToTable("Customers");
+            HasMany(x => x.Notes)
+                .WithRequired(x => x.Customer)
+                .WillCascadeOnDelete(true);
         }
     }
 }

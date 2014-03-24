@@ -159,7 +159,6 @@ namespace ogsysCRM.Tests
 
             //assert
             Assert.That(context.AsQueryable<Customer>().Count(x => x.FirstName == "Justin"), Is.EqualTo(0));
-
         }
     } 
 }

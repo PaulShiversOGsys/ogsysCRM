@@ -20,14 +20,14 @@ namespace ogsysCRM.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "ogsysCRM";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "Justin Patterson";
 
             return View();
         }

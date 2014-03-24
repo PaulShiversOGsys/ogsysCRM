@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<ogsysCRM.Models.Customer>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Customers";
 }
 
-<h2>Index</h2>
+<h2>Customers</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -16,9 +16,6 @@
         </th>
         <th>
             @Html.DisplayNameFor(model => model.LastName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.AvatarUrl)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.CompanyName)
@@ -41,9 +38,6 @@
             @Html.DisplayFor(modelItem => item.LastName)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AvatarUrl)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.CompanyName)
         </td>
         <td>
@@ -54,10 +48,9 @@
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Notes", "Index", "Note", new { id=item.Id }, null) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
         </td>
     </tr>
 }
-
 </table>
