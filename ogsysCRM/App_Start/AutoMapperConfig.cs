@@ -73,6 +73,19 @@ namespace ogsysCRM.App_Start
                     });
                 }
             );
+
+            Mapper.CreateMap<Note, NoteViewModel>()
+                .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.UserName))
+                .AfterMap((Note n, NoteViewModel v) =>
+                {
+                    if (n.Customer != null)
+                        v.CustomerName = String.Format("{0} {1}", n.Customer.FirstName, n.Customer.LastName);
+                    else
+                        v.CustomerName = "";
+                }
+            );
+
+            Mapper.CreateMap<NoteViewModel, Note>();
         }
     }
 }

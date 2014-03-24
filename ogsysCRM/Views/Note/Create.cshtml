@@ -1,4 +1,4 @@
-﻿@model ogsysCRM.Models.Note
+﻿@model ogsysCRM.ViewModels.NoteViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -15,6 +15,7 @@
         <h4>Note</h4>
         <hr />
         @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.LastPage)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Body, new { @class = "control-label col-md-2" })

@@ -55,14 +55,15 @@
             </div>
         </div>
     </div>
+    <p>
+        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+    <hr />
 
-    Notes:
-    @foreach (var note in Model.Notes)
-    {
-        @note.Body
-    }
+    <h3>Notes:</h3>
+    <p>
+        @Html.ActionLink("Create New", "Create", "Note", new { customerId = Model.Id }, new { @class = "btn btn-default" })
+    </p>
+    @Html.Partial("_Notes", Model.Notes)
 </div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>

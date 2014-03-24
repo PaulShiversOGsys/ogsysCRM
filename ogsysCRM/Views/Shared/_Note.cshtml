@@ -1,4 +1,4 @@
-﻿@model ogsysCRM.Models.Note
+﻿@model ogsysCRM.ViewModels.NoteViewModel
 <h4>Note</h4>
 <hr />
 <dl class="dl-horizontal">
@@ -6,13 +6,13 @@
         Customer
     </dt>
     <dd>
-        @String.Format("{0} {1}", Model.Customer.FirstName, Model.Customer.LastName)
+        @Model.CustomerName
     </dd>
     <dt>
         Created By
     </dt>
     <dd>
-        @Html.DisplayFor(model => model.User.UserName)
+        @Html.DisplayFor(model => model.UserName)
     </dd>
     <dt>
         @Html.DisplayNameFor(model => model.Body)

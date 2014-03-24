@@ -1,4 +1,4 @@
-﻿@model ogsysCRM.Models.Note
+﻿@model ogsysCRM.ViewModels.NoteViewModel
 
 @{
     ViewBag.Title = "Delete";
@@ -12,12 +12,11 @@
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-        
-        @Html.HiddenFor(model => model.Customer.Id, new { @Name = "customerId" })
+        @Html.HiddenFor(model => model.LastPage)
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index", new { id = Model.Customer.Id })
+            <a href="@Model.LastPage">Back</a>
         </div>
     }
 </div>

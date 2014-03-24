@@ -192,6 +192,60 @@ namespace ogsysCRM.Tests
             Assert.That(dcvm.Address, Is.EqualTo(expectedAddress));
         }
 
+        [Test]
+        public void ShouldMapNoteToNoteViewModel()
+        {
+            //arrange
+            AutoMapperConfig.RegisterMaps();
+            Note note = new Note()
+            {
+                Body = "Note",
+                Id = 0,
+                User = new ApplicationUser()
+                {
+                    UserName = "justin"
+                },
+                Customer = new Customer()
+                {
+                    FirstName = "Justin",
+                    LastName = "Patterson"
+                }
+            };
+
+            //act
+            NoteViewModel nvm = Mapper.Map<NoteViewModel>(note);
+
+            //assert
+            Assert.That(nvm.UserName, Is.EqualTo(note.User.UserName));
+            Assert.That(nvm.Id, Is.EqualTo(note.Id));
+            Assert.That(nvm.Body, Is.EqualTo(note.Body));
+            Assert.That(nvm.CustomerName, Is.EqualTo("Justin Patterson"));
+            Assert.That(String.IsNullOrWhiteSpace(nvm.LastPage), Is.True);
+        }
+
+        [Test]
+        public void ShouldMapNoteViewModelToNote()
+        {
+            //arrange
+            AutoMapperConfig.RegisterMaps();
+            NoteViewModel nvm = new NoteViewModel()
+            {
+                Body = "Note",
+                Id = 0,
+                UserName = "justin",
+                LastPage = "http://google.com"
+            };
+
+            //act
+            Note note = Mapper.Map<Note>(nvm);
+
+            //assert
+            Assert.That(note.User, Is.Null);
+            Assert.That(note.Customer, Is.Null);
+            Assert.That(note.Id, Is.EqualTo(nvm.Id));
+            Assert.That(note.Body, Is.EqualTo(nvm.Body));
+        }
+
 
     }
 }

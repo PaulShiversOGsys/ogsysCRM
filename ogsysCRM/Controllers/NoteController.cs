@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using ogsysCRM.Models;
 using ogsysCRM.Services;
+using ogsysCRM.ViewModels;
+using AutoMapper;
 
 namespace ogsysCRM.Controllers
 {
@@ -31,7 +33,7 @@ namespace ogsysCRM.Controllers
 
             if (customer != null)
             {
-                return View(customer);
+                return View(Mapper.Map<DetailsCustomerViewModel>(customer));
             }
 
             return HttpNotFound();
@@ -49,13 +51,19 @@ namespace ogsysCRM.Controllers
             {
                 return HttpNotFound();
             }
-            return View(note);
+            var nvm = Mapper.Map<NoteViewModel>(note);
+            nvm.LastPage = Request.UrlReferrer.ToString();
+            return View(nvm);
         }
 
         // GET: /Note/Create
         public ActionResult Create(int customerId)
         {
-            return View();
+            NoteViewModel nvm = new NoteViewModel()
+            {
+                LastPage = Request.UrlReferrer.ToString()
+            };
+            return View(nvm);
         }
 
         // POST: /Note/Create
@@ -63,19 +71,20 @@ namespace ogsysCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Note note, int customerId)
+        public ActionResult Create(NoteViewModel nvm, int customerId)
         {
             if (ModelState.IsValid)
             {
+                Note note = Mapper.Map<Note>(nvm);
                 var customer = _service.GetCustomerById(customerId);
                 var user = _service.GetUserByUserName(User.Identity.Name);
                 note.Customer = customer;
                 note.User = user;
                 _service.AddNote(note);
-                return RedirectToAction("Index", new { id = customerId});
+                return Redirect(nvm.LastPage);
             }
 
-            return View(note);
+            return View(nvm);
         }
 
         // GET: /Note/Edit/5
@@ -90,7 +99,9 @@ namespace ogsysCRM.Controllers
             {
                 return HttpNotFound();
             }
-            return View(note);
+            var nvm = Mapper.Map<NoteViewModel>(note);
+            nvm.LastPage = Request.UrlReferrer.ToString();
+            return View(nvm);
         }
 
         // POST: /Note/Edit/5
@@ -98,18 +109,18 @@ namespace ogsysCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Note note, int customerId)
+        public ActionResult Edit(NoteViewModel nvm)
         {
             if (ModelState.IsValid)
             {
                 //Users can only update the body
-                Note realNote = _service.NoteById(note.Id);
-                realNote.Body = note.Body;
+                Note note = _service.NoteById(nvm.Id);
+                note.Body = nvm.Body;
 
-                _service.UpdateNote(realNote);
-                return RedirectToAction("Index", new { id = customerId });
+                _service.UpdateNote(note);
+                return Redirect(nvm.LastPage);
             }
-            return View(note);
+            return View(nvm);
         }
 
         // GET: /Note/Delete/5
@@ -124,16 +135,18 @@ namespace ogsysCRM.Controllers
             {
                 return HttpNotFound();
             }
-            return View(note);
+            var nvm = Mapper.Map<NoteViewModel>(note);
+            nvm.LastPage = Request.UrlReferrer.ToString();
+            return View(nvm);
         }
 
         // POST: /Note/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id, int customerId)
+        public ActionResult DeleteConfirmed(NoteViewModel nvm)
         {
-            _service.DeleteNoteById(id);
-            return RedirectToAction("Index", new { id = customerId });
+            _service.DeleteNoteById(nvm.Id);
+            return Redirect(nvm.LastPage);
         }
     }
 }
