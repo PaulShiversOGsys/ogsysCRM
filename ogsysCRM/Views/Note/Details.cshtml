@@ -7,24 +7,7 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Note</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Customer.FirstName)
-        </dt>
-        <dd>
-            @Html.DisplayFor(model => model.Customer.FirstName)
-        </dd>
-        <dt>
-            @Html.DisplayNameFor(model => model.Body)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Body)
-        </dd>
-
-    </dl>
+    @Html.Partial("_Note", Model)
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
