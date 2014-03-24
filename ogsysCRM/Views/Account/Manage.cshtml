@@ -1,4 +1,5 @@
-﻿@using ogsysCRM.Models;
+﻿@model ogsysCRM.Models.ApplicationUser
+@using ogsysCRM.Models;
 @using Microsoft.AspNet.Identity;
 @{
     ViewBag.Title = "Manage Account";
@@ -7,21 +8,47 @@
 <h2>@ViewBag.Title.</h2>
 
 <p class="text-success">@ViewBag.StatusMessage</p>
+<p>You're logged in as <strong>@User.Identity.GetUserName()</strong>.</p>
+<div class="row">
+    <div class="col-md-12">
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
+
+        </dl>
+    </div>
+</div>
 <div class="row">
     <div class="col-md-12">
         @if (ViewBag.HasLocalPassword)
         {
-            @Html.Partial("_ChangePasswordPartial")
+            @Html.Partial("_ChangePasswordPartial", new ManageUserViewModel())
         }
         else
         {
-            @Html.Partial("_SetPasswordPartial")
+            @Html.Partial("_SetPasswordPartial", new ManageUserViewModel())
         }
 
-        <section id="externalLogins">
+        @*<section id="externalLogins">
             @Html.Action("RemoveAccountList")
             @Html.Partial("_ExternalLoginsListPartial", new { Action = "LinkLogin", ReturnUrl = ViewBag.ReturnUrl })
-        </section>
+        </section>*@
     </div>
 </div>
 @section Scripts {
