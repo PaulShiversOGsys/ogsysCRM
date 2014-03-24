@@ -79,7 +79,7 @@ namespace ogsysCRM.Services
         public CustomerById(int id)
         {
             ContextQuery = c => c.AsQueryable<Customer>()
-                .Include(x => x.Notes)
+                .Include(x => x.Notes.Select(y => y.User))
                 .Single(x => x.Id == id);
         }
     }
@@ -128,6 +128,7 @@ namespace ogsysCRM.Services
         {
             ContextQuery = c => c.AsQueryable<Note>()
                 .Include(x => x.Customer)
+                .Include(x => x.User)
                 .SingleOrDefault(x => x.Id == id);
 
         }
