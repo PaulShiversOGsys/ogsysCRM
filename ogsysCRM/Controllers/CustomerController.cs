@@ -47,7 +47,7 @@ namespace ogsysCRM.Controllers
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(Mapper.Map<DetailsCustomerViewModel>(customer));
         }
 
         // GET: /Customer/Create
@@ -61,7 +61,7 @@ namespace ogsysCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CustomerViewModel ccvm)
+        public ActionResult Create(CreateCustomerViewModel ccvm)
         {
             if (ModelState.IsValid)
             {

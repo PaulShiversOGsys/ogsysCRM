@@ -7,32 +7,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ogsysCRM.ViewModels
 {
-    public class CustomerViewModel
+    public class CreateCustomerViewModel : CustomerViewModel
     {
-        [Required]
-        [Display(Name = "First name")]
-        public string FirstName { get; set; }
-
-        [Required]
-        [Display(Name = "Last name")]
-        public string LastName { get; set; }
-
-        [Required]
-        [DataType(DataType.EmailAddress)]
-        [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        [Display(Name = "Email")]
-        public string EmailAddress { get; set; }
-
-        [Required]
-        [Display(Name = "Company name")]
-        public string CompanyName { get; set; }
-
-        [Required]
-        [Display(Name = "Phone Number")]
-        [DataType(DataType.PhoneNumber)]
-        [Phone(ErrorMessage = "Ivalid Phone NUmber")]
-        public string PhoneNumber { get; set; }
-
         [Required]
         [Display(Name = "Street")]
         public string Street { get; set; }

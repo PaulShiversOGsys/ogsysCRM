@@ -1,4 +1,4 @@
-﻿@model ogsysCRM.Models.Customer
+﻿@model ogsysCRM.ViewModels.DetailsCustomerViewModel
 
 @{
     ViewBag.Title = "Details";
@@ -7,58 +7,54 @@
 <h2>Details</h2>
 
 <div>
-    <h4>Customer</h4>
+    <h4>@Model.FirstName @Model.LastName</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-1">
+                @if (Model.AvatarUrl != string.Empty)
+                {
+                    <img src="@Model.AvatarUrl" />
+                }
+            </div>
+            <div class="col-md-1">
+                <dl class="dl-horizontal">
+                    <dt>
+                        @Html.DisplayNameFor(model => model.Address)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.Address)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.CompanyName)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.CompanyName)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.AvatarUrl)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.EmailAddress)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.AvatarUrl)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.EmailAddress)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.CompanyName)
-        </dt>
+                    <dt>
+                        @Html.DisplayNameFor(model => model.PhoneNumber)
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.CompanyName)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EmailAddress)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.EmailAddress)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
-
-    </dl>
+                </dl>
+            </div>
+        </div>
+    </div>
 
     Notes:
     @foreach (var note in Model.Notes)

@@ -13,8 +13,8 @@ namespace ogsysCRM.App_Start
     {
         public static void RegisterMaps()
         {
-            Mapper.CreateMap<CustomerViewModel, Customer>()
-                .AfterMap((CustomerViewModel v, Customer c) =>
+            Mapper.CreateMap<CreateCustomerViewModel, Customer>()
+                .AfterMap((CreateCustomerViewModel v, Customer c) =>
                 {
                     if (v.UseEmailForGravatar)
                     {
@@ -57,9 +57,22 @@ namespace ogsysCRM.App_Start
                 .ForMember(dest => dest.PostalCode, opt => opt.MapFrom(src => src.Address.PostalCode))
                 .ForMember(dest => dest.AddressId, opt => opt.MapFrom(src => src.Address.Id))
                 .AfterMap((Customer c, EditCustomerViewModel v) =>
-            {
-                v.UseEmailForGravatar = !String.IsNullOrWhiteSpace(c.AvatarUrl);
-            });
+                {
+                    v.UseEmailForGravatar = !String.IsNullOrWhiteSpace(c.AvatarUrl);
+                }
+            );
+
+            Mapper.CreateMap<Customer, DetailsCustomerViewModel>()
+                .AfterMap((Customer c, DetailsCustomerViewModel v) =>
+                {
+                    v.Address = String.Join(System.Environment.NewLine, new string[] { 
+                        c.Address.Street,
+                        c.Address.City,
+                        c.Address.State,
+                        c.Address.PostalCode
+                    });
+                }
+            );
         }
     }
 }

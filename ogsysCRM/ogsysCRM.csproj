@@ -217,6 +217,8 @@
     <Compile Include="Startup.cs" />
     <Compile Include="Utils\GravatarUtil.cs" />
     <Compile Include="ViewModels\CreateCustomerViewModel.cs" />
+    <Compile Include="ViewModels\CustomerViewModel.cs" />
+    <Compile Include="ViewModels\DetailsCustomerViewModel.cs" />
     <Compile Include="ViewModels\EditCustomerViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

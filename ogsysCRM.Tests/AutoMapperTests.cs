@@ -16,12 +16,12 @@ namespace ogsysCRM.Tests
     class AutoMapperTests
     {
         [Test]
-        public void ShouldMapCustomerViewModeToCustomer()
+        public void ShouldMapCreateCustomerViewModeToCustomer()
         {
             //arrange
             AutoMapperConfig.RegisterMaps();
 
-            var cvm = new CustomerViewModel()
+            var cvm = new CreateCustomerViewModel()
             {
                 FirstName = "Justin",
                 LastName = "Patterson",
@@ -135,6 +135,61 @@ namespace ogsysCRM.Tests
             Assert.That(ecvm.State, Is.EqualTo(customer.Address.State));
             Assert.That(ecvm.PostalCode, Is.EqualTo(customer.Address.PostalCode));
             Assert.That(ecvm.PhoneNumber, Is.EqualTo(customer.PhoneNumber));
+        }
+
+        [Test]
+        public void ShouldMapCustomerToDetailsCustomerViewMode()
+        {
+            //arrange
+            AutoMapperConfig.RegisterMaps();
+            string expectedAddress = String.Join(System.Environment.NewLine, new string[] { 
+                        "123 street lane",
+                        "Fort Worth",
+                        "TX",
+                        "76111"
+                    });
+
+            var customer = new Customer()
+            {
+                Id = 1,
+                FirstName = "Justin",
+                LastName = "Patterson",
+                CompanyName = "CRM",
+                EmailAddress = "justin.patterson@gmail.com",
+                PhoneNumber = "3333333333",
+                Address = new Address()
+                {
+                    Street = "123 street lane",
+                    City = "Fort Worth",
+                    State = "TX",
+                    PostalCode = "76111",
+                },
+                Notes = new List<Note>()
+            };
+
+            customer.Notes.Add(new Note()
+            {
+                Body = "Test Note",
+                Id = 0
+            });
+
+
+            customer.AvatarUrl = GravatarUtil.GetGravatarImgUrl(customer.EmailAddress);
+
+            //act
+            DetailsCustomerViewModel dcvm = Mapper.Map<DetailsCustomerViewModel>(customer);
+
+
+            //assert
+            Assert.That(dcvm.Id, Is.EqualTo(customer.Id));
+            Assert.That(dcvm.Notes.Count, Is.EqualTo(customer.Notes.Count));
+            Assert.That(dcvm.FirstName, Is.EqualTo(customer.FirstName));
+            Assert.That(dcvm.LastName, Is.EqualTo(customer.LastName));
+            Assert.That(dcvm.CompanyName, Is.EqualTo(customer.CompanyName));
+            Assert.That(dcvm.EmailAddress, Is.EqualTo(customer.EmailAddress));
+            Assert.That(dcvm.PhoneNumber, Is.EqualTo(customer.PhoneNumber));
+            Assert.That(dcvm.AvatarUrl, Is.EqualTo(customer.AvatarUrl));
+            Assert.That(dcvm.Address, Is.EqualTo(expectedAddress));
         }
 
 

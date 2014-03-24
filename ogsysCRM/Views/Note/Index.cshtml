@@ -11,5 +11,6 @@
 @Html.Partial("_Notes", Model.Notes)
 
 <p>
-    @Html.ActionLink("Create New", "Create", new { customerId = Model.Id })
+    @Html.ActionLink("Create New", "Create", new { customerId = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index", "Customer", null, null)
 </p>
