@@ -4,12 +4,19 @@
 {
     <script type="text/javascript">
         window.location.href = "@Url.Action("Index","Customer")";
-    </script>  
+    </script>
 }
 
 <div class="jumbotron">
     <h1>CRM</h1>
-    <p class="lead">You must login.</p>
+    <p class="lead">
+        Customer Relationship Management App <br />
+        by Justin Patterson
+    </p>
+    <br />
+    <p>
+        <h4>You must login to access customers:</h4>
+    </p>
     <p>
         @Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink", @class = "btn btn-primary btn-large" })
         @Html.ActionLink("Log in", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink", @class = "btn btn-primary btn-large" })
