@@ -37,7 +37,7 @@ namespace ogsysCRM.Tests
                 UserName = "Justin"
             });
             
-            var service = new CustomersService(new Repository(context));
+            var service = new CRMService(new Repository(context));
 
             var customer = service.GetCustomerById(0);
 
@@ -83,7 +83,7 @@ namespace ogsysCRM.Tests
                 User = user
             });
 
-            var service = new CustomersService(new Repository(context));
+            var service = new CRMService(new Repository(context));
             var note = context.AsQueryable<Note>().Single(x => x.Id == 0);
 
             //act
@@ -123,7 +123,7 @@ namespace ogsysCRM.Tests
                 User = user
             });
 
-            var service = new CustomersService(new Repository(context));
+            var service = new CRMService(new Repository(context));
 
             //act
             var note = service.NoteById(0);
@@ -163,7 +163,7 @@ namespace ogsysCRM.Tests
             context.Add(user);
             context.Add(note);
 
-            var service = new CustomersService(new Repository(context));
+            var service = new CRMService(new Repository(context));
 
             //act
             service.DeleteNoteById(0);

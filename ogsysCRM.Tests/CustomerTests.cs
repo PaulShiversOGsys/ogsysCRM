@@ -15,7 +15,7 @@ namespace ogsysCRM.Tests
         {
             //arrange
             var context = new InMemoryDataContext();
-            var service = new CustomersService(new Repository(context));
+            var service = new CRMService(new Repository(context));
             var customer = new Customer()
             {
                 FirstName = "Justin",
@@ -45,7 +45,7 @@ namespace ogsysCRM.Tests
             var context = new InMemoryDataContext();
             context.Add(customer);
 
-            var service = new CustomersService(new Repository(context));
+            var service = new CRMService(new Repository(context));
 
             //act
             var foundCustomer = service.GetCustomerByLastName("Patterson");
@@ -70,7 +70,7 @@ namespace ogsysCRM.Tests
             var context = new InMemoryDataContext();
             context.Add(customer);
 
-            var service = new CustomersService(new Repository(context));
+            var service = new CRMService(new Repository(context));
 
             //act
             var foundCustomer = service.GetCustomerById(0);
@@ -103,7 +103,7 @@ namespace ogsysCRM.Tests
             context.Add(customer1);
             context.Add(customer2);
 
-            var service = new CustomersService(new Repository(context));
+            var service = new CRMService(new Repository(context));
 
             //act
             var foundCustomer = service.GetAllCustomers();
@@ -127,7 +127,7 @@ namespace ogsysCRM.Tests
             var context = new InMemoryDataContext();
             context.Add(customer);
 
-            var service = new CustomersService(new Repository(context));
+            var service = new CRMService(new Repository(context));
 
             //act
             customer.FirstName = "John";
@@ -152,7 +152,7 @@ namespace ogsysCRM.Tests
             var context = new InMemoryDataContext();
             context.Add(customer);
 
-            var service = new CustomersService(new Repository(context));
+            var service = new CRMService(new Repository(context));
 
             //act
             service.DeleteCustomer(customer);

@@ -43,7 +43,7 @@ namespace ogsysCRM.App_Start
                 .As<IDataContext>();
 
             builder
-                .RegisterType<CustomersService>()
+                .RegisterType<CRMService>()
                 .InstancePerLifetimeScope();
 
             var container = builder.Build();

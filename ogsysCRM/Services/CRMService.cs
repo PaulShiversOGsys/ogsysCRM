@@ -8,11 +8,11 @@ using AutoMapper;
 
 namespace ogsysCRM.Services
 {
-    public class CustomersService
+    public class CRMService
     {
         private readonly IRepository _repository;
 
-        public CustomersService(IRepository repository)
+        public CRMService(IRepository repository)
         {
             _repository = repository;
         }

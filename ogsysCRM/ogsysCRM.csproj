@@ -209,7 +209,7 @@
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Mappings\CustomerMap.cs" />
     <Compile Include="Models\Entity.cs" />
-    <Compile Include="Services\CustomersService.cs" />
+    <Compile Include="Services\CRMService.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\Note.cs" />
     <Compile Include="Mappings\NoteMap.cs" />

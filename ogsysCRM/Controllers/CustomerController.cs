@@ -18,13 +18,13 @@ namespace ogsysCRM.Controllers
     [Authorize]
     public class CustomerController : Controller
     {
-        CustomersService _customers;
+        CRMService _customers;
 
         /// <summary>
         /// Initializes a new instance of the CustomerController class.
         /// </summary>
         /// <param name="customers"></param>
-        public CustomerController(CustomersService customers)
+        public CustomerController(CRMService customers)
         {
             _customers = customers;
         }

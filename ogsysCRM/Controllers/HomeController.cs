@@ -11,7 +11,7 @@ namespace ogsysCRM.Controllers
 {
     public class HomeController : Controller
     {
-        CustomersService _customers = new CustomersService(DependencyResolver.Current.GetService<IRepository>());
+        CRMService _customers = new CRMService(DependencyResolver.Current.GetService<IRepository>());
         public ActionResult Index()
         {
             IEnumerable<Customer> allCustomers = _customers.GetAllCustomers();

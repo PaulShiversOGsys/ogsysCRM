@@ -15,13 +15,13 @@ namespace ogsysCRM.Controllers
 {
     public class NoteController : Controller
     {
-        private readonly CustomersService _service;
+        private readonly CRMService _service;
 
         /// <summary>
         /// Initializes a new instance of the NoteController class.
         /// </summary>
         /// <param name="service"></param>
-        public NoteController(CustomersService service)
+        public NoteController(CRMService service)
         {
             _service = service;
         }
