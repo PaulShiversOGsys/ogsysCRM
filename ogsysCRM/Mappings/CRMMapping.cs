@@ -17,25 +17,34 @@ namespace ogsysCRM.Mappings
 
             modelBuilder.Configurations.Add(new NoteMap());
 
-            //modelBuilder
-            //    .Entity<ApplicationUser>()
-            //    .ToTable("ApplicationUsers");
+            modelBuilder
+                .Entity<ApplicationUser>()
+                .ToTable("ApplicationUsers");
 
-            ////The Following from;
-            ////http://stackoverflow.com/questions/19913447/user-in-entity-type-mvc5-ef6
-            //modelBuilder
-            //    .Entity<IdentityUserLogin>()
-            //    .HasKey<string>(l => l.UserId)
+            //The Following from;
+            //http://stackoverflow.com/questions/19913447/user-in-entity-type-mvc5-ef6
+            modelBuilder
+                .Entity<IdentityUserLogin>()
+                .HasKey<string>(l => l.UserId)
+                .ToTable("AspNetUserLogin");
 
-            //modelBuilder
-            //    .Entity<IdentityRole>()
-            //    .HasKey<string>(r => r.Id)
-            //    .ToTable("AspNetRoles");
+            modelBuilder
+                .Entity<IdentityRole>()
+                .HasKey<string>(r => r.Id)
+                .ToTable("AspNetRoles");
 
-            //modelBuilder
-            //    .Entity<IdentityUserRole>()
-            //    .HasKey(r => new { r.RoleId, r.UserId })
-            //    .ToTable("AspNetUserRoles");
+            modelBuilder
+                .Entity<IdentityUserRole>()
+                .HasKey(r => new { r.RoleId, r.UserId })
+                .ToTable("AspNetUserRoles");
+
+            modelBuilder
+                .Entity<IdentityUserClaim>()
+                .ToTable("AspNetUserClaims");
+
+            modelBuilder
+                .Entity<IdentityUserLogin>()
+                .ToTable("AspNetUserLogins");
         }
     }
 }

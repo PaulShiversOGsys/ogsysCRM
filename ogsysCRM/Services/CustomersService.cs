@@ -84,6 +84,17 @@ namespace ogsysCRM.Services
         }
     }
 
+    public class UserByUserName : Scalar<ApplicationUser>
+    {
+        
+        public UserByUserName(string userName)
+        {
+            ContextQuery = c => c.AsQueryable<ApplicationUser>()
+                .Include(x => x.Notes)
+                .SingleOrDefault(x => x.UserName == userName);
+        }
+    }
+
     public class AddNote : Command
     {
         
@@ -153,14 +164,6 @@ namespace ogsysCRM.Services
         {
             ContextQuery = c => c.AsQueryable<Customer>()
                 .Include(x => x.Notes);
-        }
-    }
-
-    public class UserByUserName : Scalar<ApplicationUser>
-    {
-        public UserByUserName(string userName)
-        {
-            ContextQuery = c => c.AsQueryable<ApplicationUser>().SingleOrDefault(x => x.UserName == userName);
         }
     }
 }

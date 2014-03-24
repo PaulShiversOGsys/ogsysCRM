@@ -11,7 +11,9 @@ namespace ogsysCRM.Mappings
 
         public UserMap()
         {
-            HasMany(x => x.Notes);
+            HasMany(x => x.Notes)
+                .WithRequired(x => x.User)
+                .WillCascadeOnDelete(true);
         }
     }
 }

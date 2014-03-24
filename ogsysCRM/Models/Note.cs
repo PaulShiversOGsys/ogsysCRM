@@ -9,5 +9,6 @@ namespace ogsysCRM.Models
     {
         public String Body { get; set; }
         public Customer Customer { get; set; }
+        public ApplicationUser User { get; set; }
     }
 }

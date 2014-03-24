@@ -24,9 +24,7 @@ namespace ogsysCRM.Models
             base.OnModelCreating(modelBuilder);
 
             modelBuilder.Configurations.Add(new UserMap());
+            modelBuilder.Configurations.Add(new NoteMap());
         }
-
-        public System.Data.Entity.DbSet<ogsysCRM.Models.Note> Notes { get; set; }
-        public System.Data.Entity.DbSet<ogsysCRM.Models.Customer> Customers { get; set; }
     }
 }
