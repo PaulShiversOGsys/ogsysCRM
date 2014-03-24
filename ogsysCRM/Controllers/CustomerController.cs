@@ -7,6 +7,11 @@ using ogsysCRM.Models;
 using ogsysCRM.Services;
 using System.Data.Entity;
 using System.Collections.Generic;
+using ogsysCRM.ViewModels;
+using AutoMapper;
+using System.Security.Cryptography;
+using System.Text;
+using ogsysCRM.Utils;
 
 namespace ogsysCRM.Controllers
 {
@@ -56,15 +61,17 @@ namespace ogsysCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Id,FirstName,LastName,AvatarUrl,CompanyName,EmailAddress,PhoneNumber")] Customer customer)
+        public ActionResult Create(CreateCustomerViewModel ccvm)
         {
             if (ModelState.IsValid)
             {
+                Customer customer = Mapper.Map<Customer>(ccvm);
+
                 _customers.AddCustomer(customer);
                 return RedirectToAction("Index");
             }
 
-            return View(customer);
+            return View(ccvm);
         }
 
         // GET: /Customer/Edit/5
@@ -79,7 +86,7 @@ namespace ogsysCRM.Controllers
             {
                 return HttpNotFound();
             }
-            return View(customer);
+            return View(Mapper.Map<EditCustomerViewModel>(customer));
         }
 
         // POST: /Customer/Edit/5
@@ -87,14 +94,14 @@ namespace ogsysCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Id,FirstName,LastName,AvatarUrl,CompanyName,EmailAddress,PhoneNumber")] Customer customer)
+        public ActionResult Edit(EditCustomerViewModel ecvm)
         {
             if (ModelState.IsValid)
             {
-                _customers.UpdateCustomer(customer);
+                _customers.UpdateCustomer(Mapper.Map<Customer>(ecvm));
                 return RedirectToAction("Index");
             }
-            return View(customer);
+            return View(ecvm);
         }
 
         // GET: /Customer/Delete/5
