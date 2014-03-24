@@ -61,7 +61,7 @@ namespace ogsysCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(CreateCustomerViewModel ccvm)
+        public ActionResult Create(CustomerViewModel ccvm)
         {
             if (ModelState.IsValid)
             {

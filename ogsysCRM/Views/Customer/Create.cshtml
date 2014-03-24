@@ -1,4 +1,4 @@
-﻿@model ogsysCRM.ViewModels.CreateCustomerViewModel
+﻿@model ogsysCRM.ViewModels.CustomerViewModel
 
 @{
     ViewBag.Title = "Create";
@@ -33,14 +33,6 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.UseEmailForGravatar, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.UseEmailForGravatar)
-                @Html.ValidationMessageFor(model => model.UseEmailForGravatar)
-            </div>
-        </div>
-
-        <div class="form-group">
             @Html.LabelFor(model => model.CompanyName, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.CompanyName)
@@ -53,6 +45,46 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.EmailAddress)
                 @Html.ValidationMessageFor(model => model.EmailAddress)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.UseEmailForGravatar, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UseEmailForGravatar)
+                @Html.ValidationMessageFor(model => model.UseEmailForGravatar)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Street, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Street)
+                @Html.ValidationMessageFor(model => model.Street)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.City, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.City)
+                @Html.ValidationMessageFor(model => model.City)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.State, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.State)
+                @Html.ValidationMessageFor(model => model.State)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PostalCode, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.PostalCode)
+                @Html.ValidationMessageFor(model => model.PostalCode)
             </div>
         </div>
 

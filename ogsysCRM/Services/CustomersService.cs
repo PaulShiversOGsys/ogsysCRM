@@ -4,6 +4,7 @@ using Highway.Data;
 using System.Collections.Generic;
 using ogsysCRM.Models;
 using System.Data.Entity;
+using AutoMapper;
 
 namespace ogsysCRM.Services
 {
@@ -46,6 +47,7 @@ namespace ogsysCRM.Services
         public void UpdateCustomer(Customer customer)
         {
             _repository.Context.Update(customer);
+            _repository.Context.Update(customer.Address);
             _repository.Context.Commit();
         }
         public void AddNote(Note note)
@@ -80,6 +82,7 @@ namespace ogsysCRM.Services
         {
             ContextQuery = c => c.AsQueryable<Customer>()
                 .Include(x => x.Notes.Select(y => y.User))
+                .Include(x => x.Address)
                 .Single(x => x.Id == id);
         }
     }
@@ -127,7 +130,7 @@ namespace ogsysCRM.Services
         public NoteById(int id)
         {
             ContextQuery = c => c.AsQueryable<Note>()
-                .Include(x => x.Customer)
+                .Include(x => x.Customer.Address)
                 .Include(x => x.User)
                 .SingleOrDefault(x => x.Id == id);
 
@@ -155,6 +158,7 @@ namespace ogsysCRM.Services
         {
             ContextQuery = c => c.AsQueryable<Customer>()
                 .Include(x => x.Notes)
+                .Include(x => x.Address)
                 .Where(x => x.LastName == name);
         }
     }
@@ -164,7 +168,8 @@ namespace ogsysCRM.Services
         public AllCustomers()
         {
             ContextQuery = c => c.AsQueryable<Customer>()
-                .Include(x => x.Notes);
+                .Include(x => x.Notes)
+                .Include(x => x.Address);
         }
     }
 }

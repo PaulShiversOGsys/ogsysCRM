@@ -14,14 +14,14 @@ namespace ogsysCRM.Mappings
         public void ConfigureModelBuilder(DbModelBuilder modelBuilder)
         {
             modelBuilder.Configurations.Add(new CustomerMap());
-
+            modelBuilder.Configurations.Add(new AddressMap());
             modelBuilder.Configurations.Add(new NoteMap());
 
             modelBuilder
                 .Entity<ApplicationUser>()
                 .ToTable("ApplicationUsers");
 
-            //The Following from;
+            //The Following Partially from:
             //http://stackoverflow.com/questions/19913447/user-in-entity-type-mvc5-ef6
             modelBuilder
                 .Entity<IdentityUserLogin>()

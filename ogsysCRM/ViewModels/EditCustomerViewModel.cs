@@ -6,8 +6,9 @@ using System.ComponentModel.DataAnnotations;
 
 namespace ogsysCRM.ViewModels
 {
-    public class EditCustomerViewModel : CreateCustomerViewModel
+    public class EditCustomerViewModel : CustomerViewModel
     {
         public int Id { get; set; }
+        public int AddressId { get; set; }
     }
 }
