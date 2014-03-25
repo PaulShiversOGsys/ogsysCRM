@@ -63,7 +63,7 @@
 
     <h3>Notes:</h3>
     <p>
-        @Html.ActionLink("Create New", "Create", "Note", new { customerId = Model.Id }, new { @class = "btn btn-default" })
+        @Html.ActionLink("Create New", "Create", "Note", new { Id = Model.Id }, new { @class = "btn btn-default" })
     </p>
     @Html.Partial("_Notes", Model.Notes)
 </div>

@@ -27,9 +27,14 @@ namespace ogsysCRM.Controllers
         }
 
         // GET: /Note/
-        public ActionResult Index([Bind(Prefix="id")]int customerId)
+        public ActionResult Index([Bind(Prefix="id")]int? customerId)
         {
-            var customer = _service.GetCustomerById(customerId);
+            if (customerId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+
+            var customer = _service.GetCustomerById(customerId.Value);
 
             if (customer != null)
             {
@@ -40,13 +45,13 @@ namespace ogsysCRM.Controllers
         }
 
         // GET: /Note/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details([Bind(Prefix = "id")]int? customerId)
         {
-            if (id == null)
+            if (customerId == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Note note = _service.NoteById(id.Value);
+            Note note = _service.NoteById(customerId.Value);
             if (note == null)
             {
                 return HttpNotFound();
@@ -56,11 +61,15 @@ namespace ogsysCRM.Controllers
         }
 
         // GET: /Note/Create
-        public ActionResult Create(int customerId)
+        public ActionResult Create([Bind(Prefix = "id")]int? customerId)
         {
+            if (customerId == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             NoteViewModel nvm = new NoteViewModel()
             {
-                CustomerId = customerId
+                CustomerId = customerId.Value
             };
             return View(nvm);
         }
@@ -70,17 +79,17 @@ namespace ogsysCRM.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(NoteViewModel nvm, int customerId)
+        public ActionResult Create(NoteViewModel nvm)
         {
             if (ModelState.IsValid)
             {
                 Note note = Mapper.Map<Note>(nvm);
-                var customer = _service.GetCustomerById(customerId);
+                var customer = _service.GetCustomerById(nvm.CustomerId);
                 var user = _service.GetUserByUserName(User.Identity.Name);
                 note.Customer = customer;
                 note.User = user;
                 _service.AddNote(note);
-                return RedirectToAction("Details", "Customer", new { id = customerId });
+                return RedirectToAction("Details", "Customer", new { id = nvm.CustomerId});
             }
 
             return View(nvm);
