@@ -12,5 +12,5 @@
 
 <p>
     @Html.ActionLink("Create New", "Create", new { customerId = Model.Id }) |
-    @Html.ActionLink("Back to List", "Index", "Customer", null, null)
+    @Html.ActionLink("Back", "Details", "Customer", new { id = Model.CustomerId }, null)
 </p>

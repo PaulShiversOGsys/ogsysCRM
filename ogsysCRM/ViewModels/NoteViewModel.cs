@@ -12,8 +12,8 @@ namespace ogsysCRM.ViewModels
         [Required]
         [DataType(DataType.MultilineText)]
         public string Body { get; set; }
-        public string LastPage { get; set; }
         public string UserName { get; set; }
         public string CustomerName { get; set; }
+        public int CustomerId { get; set; }
     }
 }

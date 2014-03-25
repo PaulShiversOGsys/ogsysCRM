@@ -208,7 +208,8 @@ namespace ogsysCRM.Tests
                 Customer = new Customer()
                 {
                     FirstName = "Justin",
-                    LastName = "Patterson"
+                    LastName = "Patterson",
+                    Id = 1
                 }
             };
 
@@ -220,7 +221,7 @@ namespace ogsysCRM.Tests
             Assert.That(nvm.Id, Is.EqualTo(note.Id));
             Assert.That(nvm.Body, Is.EqualTo(note.Body));
             Assert.That(nvm.CustomerName, Is.EqualTo("Justin Patterson"));
-            Assert.That(String.IsNullOrWhiteSpace(nvm.LastPage), Is.True);
+            Assert.That(nvm.CustomerId, Is.EqualTo(note.Customer.Id));
         }
 
         [Test]
@@ -233,7 +234,8 @@ namespace ogsysCRM.Tests
                 Body = "Note",
                 Id = 0,
                 UserName = "justin",
-                LastPage = "http://google.com"
+                CustomerId = 1,
+                CustomerName = "Justin Patterson"
             };
 
             //act

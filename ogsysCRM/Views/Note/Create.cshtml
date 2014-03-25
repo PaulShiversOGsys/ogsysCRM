@@ -15,7 +15,6 @@
         <h4>Note</h4>
         <hr />
         @Html.ValidationSummary(true)
-        @Html.HiddenFor(model => model.LastPage)
 
         <div class="form-group">
             @Html.LabelFor(model => model.Body, new { @class = "control-label col-md-2" })
@@ -34,7 +33,7 @@
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back", "Details", "Customer", new { id = Model.CustomerId }, null)
 </div>
 
 @section Scripts {

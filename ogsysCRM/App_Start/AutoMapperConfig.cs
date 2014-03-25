@@ -76,6 +76,7 @@ namespace ogsysCRM.App_Start
 
             Mapper.CreateMap<Note, NoteViewModel>()
                 .ForMember(dest => dest.UserName, opt => opt.MapFrom(src => src.User.UserName))
+                .ForMember(dest => dest.CustomerId, opt => opt.MapFrom(src => src.Customer.Id))
                 .AfterMap((Note n, NoteViewModel v) =>
                 {
                     if (n.Customer != null)

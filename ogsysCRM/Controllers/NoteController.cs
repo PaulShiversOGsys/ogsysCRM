@@ -52,7 +52,6 @@ namespace ogsysCRM.Controllers
                 return HttpNotFound();
             }
             var nvm = Mapper.Map<NoteViewModel>(note);
-            nvm.LastPage = Request.UrlReferrer.ToString();
             return View(nvm);
         }
 
@@ -61,7 +60,7 @@ namespace ogsysCRM.Controllers
         {
             NoteViewModel nvm = new NoteViewModel()
             {
-                LastPage = Request.UrlReferrer.ToString()
+                CustomerId = customerId
             };
             return View(nvm);
         }
@@ -81,7 +80,7 @@ namespace ogsysCRM.Controllers
                 note.Customer = customer;
                 note.User = user;
                 _service.AddNote(note);
-                return Redirect(nvm.LastPage);
+                return RedirectToAction("Details", "Customer", new { id = customerId });
             }
 
             return View(nvm);
@@ -99,8 +98,7 @@ namespace ogsysCRM.Controllers
             {
                 return HttpNotFound();
             }
-            var nvm = Mapper.Map<NoteViewModel>(note);
-            nvm.LastPage = Request.UrlReferrer.ToString();
+            NoteViewModel nvm = Mapper.Map<NoteViewModel>(note);
             return View(nvm);
         }
 
@@ -118,7 +116,7 @@ namespace ogsysCRM.Controllers
                 note.Body = nvm.Body;
 
                 _service.UpdateNote(note);
-                return Redirect(nvm.LastPage);
+                return RedirectToAction("Details", "Customer", new { id = note.Customer.Id});
             }
             return View(nvm);
         }
@@ -135,8 +133,7 @@ namespace ogsysCRM.Controllers
             {
                 return HttpNotFound();
             }
-            var nvm = Mapper.Map<NoteViewModel>(note);
-            nvm.LastPage = Request.UrlReferrer.ToString();
+            NoteViewModel nvm = Mapper.Map<NoteViewModel>(note);
             return View(nvm);
         }
 
@@ -146,7 +143,7 @@ namespace ogsysCRM.Controllers
         public ActionResult DeleteConfirmed(NoteViewModel nvm)
         {
             _service.DeleteNoteById(nvm.Id);
-            return Redirect(nvm.LastPage);
+            return RedirectToAction("Details", "Customer", new { id = nvm.CustomerId });
         }
     }
 }

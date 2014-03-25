@@ -12,11 +12,11 @@
 
     @using (Html.BeginForm()) {
         @Html.AntiForgeryToken()
-        @Html.HiddenFor(model => model.LastPage)
+        @Html.HiddenFor(model => model.CustomerId)
 
         <div class="form-actions no-color">
             <input type="submit" value="Delete" class="btn btn-default" /> |
-            <a href="@Model.LastPage">Back</a>
+            @Html.ActionLink("Back", "Details", "Customer", new { id = Model.CustomerId }, null)
         </div>
     }
 </div>

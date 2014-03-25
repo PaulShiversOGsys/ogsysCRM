@@ -11,5 +11,5 @@
 </div>
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-    <a href="@Model.LastPage">Back</a>
+    @Html.ActionLink("Back", "Details", "Customer", new { id = Model.CustomerId }, null)
 </p>
